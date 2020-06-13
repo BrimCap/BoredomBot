@@ -1,8 +1,9 @@
 import discord 
 import os
+import token
 from discord.ext import commands
 
-TOKEN = 'NzExNDQ4MjI4OTkzODI2ODE3.XsDKjA._6MjI43AIY5f2043fzeT928ykuk'
+TOKEN = token.get_token()
 
 client = commands.Bot(command_prefix = '!b ')
 
