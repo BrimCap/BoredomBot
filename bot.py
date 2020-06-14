@@ -1,9 +1,9 @@
 import discord 
 import os
-import token
+import tokener
 from discord.ext import commands
 
-TOKEN = token.get_token()
+TOKEN = tokener.get_token()
 
 client = commands.Bot(command_prefix = '!b ')
 
