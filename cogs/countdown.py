@@ -36,13 +36,13 @@ class countdown(commands.Cog):
 
             await asyncio.sleep(1)
 
-        @cd.error
-        async def cd_error_handler(self, ctx, error):
+    @cd.error
+    async def cd_error_handler(self, ctx, error):
 
-            if isinstance(error, commands.MissingRequiredArgument):
-                
-                if error.param.name == 'amount':
-                    await ctx.send("I wanna contdown but.. u didn't tell me for how long")
+        if isinstance(error, commands.MissingRequiredArgument):   
+                        
+            if error.param.name == 'amount':
+                await ctx.send("I wanna contdown but.. u didn't tell me for how long")
                 
 
 def setup(client):
