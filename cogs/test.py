@@ -8,9 +8,9 @@ class test(commands.Cog):
     
     @commands.command()
     async def test(self, ctx):
-        bans = await bans()
+        ban = await ctx.guild.bans()
 
-        await ctx.send(bans)
+        await ctx.send(ban)
 
 def setup(client):
     client.add_cog(test(client))
