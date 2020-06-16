@@ -8,11 +8,9 @@ class test(commands.Cog):
     
     @commands.command()
     async def test(self, ctx):
-        embed = discord.Embed(
-            description = '<:BrickRed_Cool:702065730807660554>'
-        )
+        bans = await bans()
 
-        await ctx.send(embed = embed)
+        await ctx.send(bans)
 
 def setup(client):
     client.add_cog(test(client))
