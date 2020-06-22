@@ -43,6 +43,8 @@ async def on_message(message):
     elif message.content.find("im bored") != -1:
         await message.channel.send("Same")
 
+    await client.process_commands(message)
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
