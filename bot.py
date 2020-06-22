@@ -31,6 +31,18 @@ async def load(ctx, extenstion):
 async def unload(ctx, extenstion):
     client.unload_extension(f"cogs.{extenstion}")
 
+@client.event
+async def on_message(message):
+
+    if message.author.id == client.user.id:
+        return
+    
+    if message.content.find("Im bored") != -1:
+        await message.channel.send("Same")
+
+    elif message.content.find("im bored") != -1:
+        await message.channel.send("Same")
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
