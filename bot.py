@@ -40,10 +40,16 @@ async def on_message(message):
     if message.author.id == client.user.id:
         return
     
-    if message.content.find("Im bored") != -1:
+    if message.content == 'Im bored':
         await message.channel.send("Same")
 
-    elif message.content.find("im bored") != -1:
+    elif message.content == "im bored":
+        await message.channel.send("Same")
+
+    elif message.content == "I am bored":
+        await message.channel.send("Same")
+
+    elif message.content == "i am bored":
         await message.channel.send("Same")
 
     await client.process_commands(message)
