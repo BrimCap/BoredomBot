@@ -22,23 +22,38 @@ class _corona(commands.Cog):
         soup = bs4.BeautifulSoup(res.text, 'lxml')
 
         numbers = soup.select('.maincounter-number span')
-        cc = numbers[0].text
-        deaths = numbers[1].text
-        recoverd = numbers[2].text
 
-        embed = discord.Embed(
+        cc = numbers[0].text[:-1]
+        cc = cc.replace(',', '')
+
+        deaths = numbers[1].text
+        deaths = deaths.replace(',', '')
+
+        recoverd = numbers[2].text
+        recoverd = recoverd.replace(',', '')
+
+        closed = int(deaths) + int(recoverd)
+        active = int(cc) - int(deaths) - int(recoverd) 
+
+        embed1 = discord.Embed(
             colour = 0xFF0000,
             description = "Here are some info i managed to find while scraping :/",
             title = title
         )
 
-        embed.add_field(name="Confirmed Cases", value=f"{cc}", inline=False)
-        embed.add_field(name="Recoverd", value=f"{recoverd}", inline=False)
-        embed.add_field(name="Deaths", value=f"{deaths}", inline=False)
-        embed.set_footer(text = f"Requested by | {ctx.author}")
-        embed.set_author(name = 'CORONAVIRUS', icon_url = 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/1800x1200_virus_3d_render_red_03_other.jpg?resize=*:350px')
+        embed1.add_field(name="Confirmed Cases", value=f"{cc}", inline=False)
+        embed1.add_field(name="Recoverd", value=f"{recoverd}", inline=False)
+        embed1.add_field(name="Deaths", value=f"{deaths}", inline=False)
 
-        await ctx.send(embed = embed)
+        embed2 = discord.Embed(colour = 0xFF0000)
+        embed2.add_field(name="Closed Cases", value=f"{closed}", inline=True)
+        embed2.add_field(name="Active Cases", value=f"{active}", inline=True)
+
+        embed2.set_footer(text = f"Requested by | {ctx.author}")
+        embed1.set_author(name = 'CORONAVIRUS', icon_url = 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/1800x1200_virus_3d_render_red_03_other.jpg?resize=*:350px')
+
+        await ctx.send(embed = embed1)
+        await ctx.send(embed = embed2)
 
 def setup(client):
     client.add_cog(_corona(client)) 
