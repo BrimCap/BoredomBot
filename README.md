@@ -12,18 +12,18 @@ This is the github repository for my discord bot [BoredomBot](https://discord.co
 ### **Table of Commands**
 
 
-- [COVID-19 Cases](#covid-19-cases)
-- [Countdown](#countdown)
-- [Guess Game](#guess-game)
-- [KTANE](#ktane)
-  - [Setup](#setup)
-  - [Button](#button)
-  - [Wires](#wires)
-  - [Reset](#reset)
-- [Poof](#poof)
-- [Rock Paper Scissors]()
-- [Test]()
-- [Unpoof]()
+- [COVID-19 Cases](https://github.com/BrimCap/BoredomBot#covid-19-cases)
+- [Countdown](https://github.com/BrimCap/BoredomBot#countdown)
+- [Guess Game](https://github.com/BrimCap/BoredomBot#guess-game)
+- [KTANE](https://github.com/BrimCap/BoredomBot#ktane)
+  - [Setup](https://github.com/BrimCap/BoredomBot#setup)
+  - [Button](https://github.com/BrimCap/BoredomBot#button)
+  - [Wires](https://github.com/BrimCap/BoredomBot#wires)
+  - [Reset](https://github.com/BrimCap/BoredomBot#reset)
+- [Poof](https://github.com/BrimCap/BoredomBot#poof)
+- [Rock Paper Scissors](https://github.com/BrimCap/BoredomBot#rps)
+- [Test](https://github.com/BrimCap/BoredomBot#test)
+- [Unpoof](https://github.com/BrimCap/BoredomBot#unpoof)
 
 ---
   
