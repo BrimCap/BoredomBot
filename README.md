@@ -2,6 +2,8 @@
 
 This is the github repository for my discord bot [BoredomBot](https://discord.com/oauth2/authorize?client_id=711448228993826817&permissions=8&scope=bot) (Click on the name to invite).
 
+**THIS IS NOT A PUBLIC BOT YET!**
+
 - [x] Name: Reduce Boredom
 #1039
 - [x] Prefix: `'!b '`
