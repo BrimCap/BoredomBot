@@ -134,4 +134,4 @@ Unbans the specified member from the guild.
 
 ## Known Issues
 
-None yet.
+- There is no ban command.
