@@ -4,10 +4,9 @@ This is the github repository for my discord bot [BoredomBot](https://discord.co
 
 **THIS IS NOT A PUBLIC BOT YET!**
 
-- [x] Name: Reduce Boredom
-#1039
-- [x] Prefix: `'!b '`
-- [x] Id: `711448228993826817` 
+> Name: Reduce Boredom#1039 <br>
+  Prefix: `'!b '` <br>
+  Id: `711448228993826817` 
 
 ## Feautures
 
@@ -110,9 +109,10 @@ Kicks the specified `member`.
 
 ### ***RPS***
 
-Usage: `!b rps [discord.Member]`
+Usage: `!b rps [discord.Member]` or `!b rps`
 
-Play Rock Paper Scissors with the specified member.
+Use the `first` one to challenge a friend. <br>
+Use the `second` one to play with the bot itself.
 
 ---
 
@@ -128,7 +128,7 @@ Test to see if the bot is working!
 
 Usage: `!b unpoof [Member.name]`
 
-> **Don't give the discm of the member just the name.**
+>**Don't give the discrim of the member just the name.** 
 
 Unbans the specified member from the guild.
 
