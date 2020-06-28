@@ -25,6 +25,7 @@ This is the github repository for my discord bot, **BoredomBot**.
 - [Rock Paper Scissors](https://github.com/BrimCap/BoredomBot#rps)
 - [Test](https://github.com/BrimCap/BoredomBot#test)
 - [Unpoof](https://github.com/BrimCap/BoredomBot#unpoof)
+- [8Ball](https://github.com/BrimCap/BoredomBot#8ball)
 
 ---
   
