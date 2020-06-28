@@ -1,6 +1,6 @@
 # BoredomBot
 
-This is the github repository for my discord bot [BoredomBot](https://discord.com/oauth2/authorize?client_id=711448228993826817&permissions=8&scope=bot) (Click on the name to invite).
+This is the github repository for my discord bot, **BoredomBot**.
 
 **THIS IS NOT A PUBLIC BOT YET!**
 
@@ -131,6 +131,14 @@ Usage: `!b unpoof [Member.name]`
 >**Don't give the discrim of the member just the name.** 
 
 Unbans the specified member from the guild.
+
+---
+
+### ***8BALL***
+
+Usage: `!b 8ball [question]`
+
+Ask a yes or no question to this bot, and he'll gladly reply with an answer!
 
 ---
 
