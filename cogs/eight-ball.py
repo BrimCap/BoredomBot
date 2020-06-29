@@ -38,5 +38,10 @@ class EightBall(commands.Cog):
 
         await ctx.send(embed = answer)
 
+    @_8ball.error
+    async def eight_ball_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send("Should i just say yes? or no? You didn't give me a question ._.")
+
 def setup(client):
     client.add_cog(EightBall(client))
