@@ -16,7 +16,7 @@ async def on_ready():
     print("==========----------------✶----------------==========")
     print("")
     print("The bot is logged in!")
-    print("Name: {client.user.name}")
+    print(f"Name: {client.user.name}")
     print(f"Id: {client.user.id}")
     print(f"Prefix: !b ")
     print('')
