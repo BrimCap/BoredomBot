@@ -26,6 +26,7 @@ This is the github repository for my discord bot, **BoredomBot**.
 - [Test](https://github.com/BrimCap/BoredomBot#test)
 - [Unpoof](https://github.com/BrimCap/BoredomBot#unpoof)
 - [8Ball](https://github.com/BrimCap/BoredomBot#8ball)
+- [Ping](https://github.com/BrimCap/BoredomBot#ping)
 
 ---
   
@@ -140,6 +141,14 @@ Unbans the specified member from the guild.
 Usage: `!b 8ball [question]`
 
 Ask a yes or no question to this bot, and he'll gladly reply with an answer!
+
+---
+
+### ***PING***
+
+Usage: `!b ping`
+
+Returns the client latency.
 
 ---
 
