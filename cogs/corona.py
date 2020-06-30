@@ -23,17 +23,17 @@ class _corona(commands.Cog):
 
         numbers = soup.select('.maincounter-number span')
 
-        cc = numbers[0].text[:-1]
-        cc = cc.replace(',', '')
+        cc = numbers[0].text
+        ccnum = cc.replace(',', '')
 
         deaths = numbers[1].text
-        deaths = deaths.replace(',', '')
+        deathsnum = deaths.replace(',', '')
 
         recoverd = numbers[2].text
-        recoverd = recoverd.replace(',', '')
+        recoverdnum = recoverd.replace(',', '')
 
-        closed = int(deaths) + int(recoverd)
-        active = int(cc) - int(deaths) - int(recoverd) 
+        closed = int(deathsnum) + int(recoverdnum)
+        active = int(ccnum) - int(deathsnum) - int(recoverdnum) 
 
         embed1 = discord.Embed(
             colour = 0xFF0000,
