@@ -10,8 +10,6 @@ client = commands.Bot(command_prefix = '!b ')
 @client.event
 async def on_ready():
 
-    guilds = [guild.name for guild in client.guilds]
-
     print("")
     print("==========----------------✶----------------==========")
     print("")
@@ -20,7 +18,7 @@ async def on_ready():
     print(f"Id: {client.user.id}")
     print(f"Prefix: !b ")
     print('')
-    print(f"Servers: {guilds}")
+    print(f"Servers: {len(client.guilds)}")
     print("")
     print("==========----------------✶----------------==========")
 
