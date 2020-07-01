@@ -27,6 +27,7 @@ This is the github repository for my discord bot, **BoredomBot**.
 - [Unpoof](https://github.com/BrimCap/BoredomBot#unpoof)
 - [8Ball](https://github.com/BrimCap/BoredomBot#8ball)
 - [Ping](https://github.com/BrimCap/BoredomBot#ping)
+- [Guilds](https://github.com/BrimCap/BoredomBot#guilds)
 
 ---
   
@@ -149,6 +150,14 @@ Ask a yes or no question to this bot, and he'll gladly reply with an answer!
 Usage: `!b ping`
 
 Returns the client latency.
+
+---
+
+### ***GUILDS***
+
+Usage: `!b guilds`
+
+Sends a dm on the servers this bot is in.
 
 ---
 
