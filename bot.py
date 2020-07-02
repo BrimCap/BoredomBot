@@ -24,6 +24,14 @@ async def on_ready():
 
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="your commands"))
 
+@client.event
+async def on_guild_join(guild):
+    
+    system_channel = guild.system_channel
+
+    if system_channel:
+        await system_channel.send('Server looks cool... imma vibe in here')
+
 @client.command()
 async def load(ctx, extenstion):
     client.load_extension(f"cogs.{extenstion}")
