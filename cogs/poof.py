@@ -12,6 +12,7 @@ class poofer(commands.Cog):
         if member.id == self.client.user.id:
             await ctx.send('Did you just poof me? smh')
         else:
+            await member.kick(reason = reason)
             await ctx.send(f':ok_hand: Just poofed {member.mention}')
             await member.send('You have been poofed sadly')
 
