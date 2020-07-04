@@ -12,7 +12,7 @@ class rps(commands.Cog):
     @commands.command()
     async def rps(self, ctx, member : discord.Member = None):
 
-        if member != None:
+        if member:
 
             await ctx.send(f'{member.mention}! {ctx.author.mention} has challenged you to an **RPS** duel! Reply with `yes` or `no`')
 
