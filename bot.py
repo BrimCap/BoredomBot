@@ -1,7 +1,8 @@
 import discord 
+from discord.ext import commands
+
 import os
 import tokener
-from discord.ext import commands
 
 TOKEN = tokener.get_token()
 
