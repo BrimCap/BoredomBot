@@ -28,6 +28,7 @@ This is the github repository for my discord bot, **BoredomBot**.
 - [8Ball](https://github.com/BrimCap/BoredomBot#8ball)
 - [Ping](https://github.com/BrimCap/BoredomBot#ping)
 - [Guilds](https://github.com/BrimCap/BoredomBot#guilds)
+- [Money]()
 
 ---
   
@@ -158,6 +159,14 @@ Returns the client latency.
 Usage: `!b guilds`
 
 Sends a dm on the servers this bot is in.
+
+---
+
+### ***MONEY***
+
+Usage: `!b money`
+
+View your current cash. You get 1$ every message.
 
 ---
 
