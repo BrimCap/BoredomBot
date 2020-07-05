@@ -28,7 +28,7 @@ This is the github repository for my discord bot, **BoredomBot**.
 - [8Ball](https://github.com/BrimCap/BoredomBot#8ball)
 - [Ping](https://github.com/BrimCap/BoredomBot#ping)
 - [Guilds](https://github.com/BrimCap/BoredomBot#guilds)
-- [Money]()
+- [Money](https://github.com/BrimCap/BoredomBot#money)
 
 ---
   
