@@ -37,7 +37,7 @@ class Levels(commands.Cog):
         with open("users.json", "w") as f:
             json.dump(users, f, indent = 2)
 
-    @commands.command(aliases = ['rank', 'level'])
+    @commands.command(aliases = ['rank', 'level', 'cash'])
     async def money(self, ctx, member : discord.Member = None):
 
         with open("users.json", "r") as f:
@@ -48,12 +48,11 @@ class Levels(commands.Cog):
         member_id = str(member.id)
 
         rank = discord.Embed(
-            color = 0x0dc700
+            color = 0x0dc700,
+            description = f"**MONEY:** {users[member_id]['money']}"
         )
 
-        rank.set_author(name = member.name, icon_url = ctx.author.avatar_url)
-        rank.set_thumbnail(url = ctx.author.avatar_url)
-        rank.add_field(name = '**CASH**', value = f"{users[member_id]['money']}")
+        rank.set_author(name = member.name, icon_url = member.avatar_url)
 
         await ctx.send(embed = rank)
 
