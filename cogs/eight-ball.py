@@ -4,9 +4,7 @@ from discord.ext import commands
 
 class EightBall(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
-        self.responses = [
+    responses = [
             "As I see it, yes.",
             "Ask again later.",
             "Better not tell you now.",
@@ -27,7 +25,10 @@ class EightBall(commands.Cog):
             "Yes.",
             "Yes – definitely.",
             "You may rely on it."
-        ]
+    ]
+
+    def __init__(self, client):
+        self.client = client
 
     @commands.command(aliases = ['8ball'])
     async def _8ball(self, ctx, *, question):
