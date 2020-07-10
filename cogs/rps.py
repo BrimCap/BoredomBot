@@ -11,7 +11,11 @@ class Rps(commands.Cog):
     @commands.command()
     async def rps(self, ctx, target : discord.Member = None):
 
-        
+        choices = [
+            "rock",
+            "paper",
+            "scissors"
+        ]        
         
         start = discord.Embed(
             color = 0x00FFEC,
@@ -22,12 +26,6 @@ class Rps(commands.Cog):
         # <!-- Functions -->
 
         async def pick(member : discord.Member):
-
-            choices = [
-                "rock",
-                "paper",
-                "scissors"
-            ]
 
             def wait_for_choice(message: discord.Message):
                 return message.author == member and not message.guild and message.content.lower() in choices
