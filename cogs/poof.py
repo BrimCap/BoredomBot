@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class poofer(commands.Cog):
+class Poof(commands.Cog):
 
     def __init__(self, client):
         self.client = client
@@ -24,4 +24,4 @@ class poofer(commands.Cog):
                 await ctx.send("U didn't ping anyone to poof. smh")
 
 def setup(client):
-    client.add_cog(poofer(client))
+    client.add_cog(Poof(client))

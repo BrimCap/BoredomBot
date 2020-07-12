@@ -1,7 +1,7 @@
 ﻿import discord
 from discord.ext import commands
 
-class unpoofer(commands.Cog):
+class UnPoof(commands.Cog):
 
     def __init__(self, client):
         self.client = client
@@ -18,4 +18,4 @@ class unpoofer(commands.Cog):
                 await ctx.send(f'👌 {i.user.name} unbanned!')
 
 def setup(client):
-    client.add_cog(unpoofer(client))
+    client.add_cog(UnPoof(client))

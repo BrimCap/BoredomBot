@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class ktane(commands.Cog):
+class Ktane(commands.Cog):
 
     battery = 0
     frk = False
@@ -233,4 +233,4 @@ class ktane(commands.Cog):
         await ctx.send('Bomb has been reset! Hope you won that game. If not its because you **SUCK**')
 
 def setup(client):
-    client.add_cog(ktane(client))
+    client.add_cog(Ktane(client))

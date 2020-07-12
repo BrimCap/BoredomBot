@@ -2,7 +2,7 @@ import discord
 import random
 from discord.ext import commands
 
-class guess(commands.Cog):
+class Guess(commands.Cog):
 
     def __init__(self,client):
         self.client = client
@@ -45,4 +45,4 @@ class guess(commands.Cog):
             await ctx.send(f"<:wrong:712965175493394432> WA WAAA, thats wrong :( it's actually {pick}. {ctx.author.mention}") 
 
 def setup(client):
-    client.add_cog(guess(client))
+    client.add_cog(Guess(client))

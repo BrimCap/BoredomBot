@@ -3,7 +3,7 @@ import requests
 import bs4
 from discord.ext import commands
 
-class _corona(commands.Cog):
+class Corona(commands.Cog):
 
     def __init__(self, client):
         self.client = client
@@ -56,5 +56,5 @@ class _corona(commands.Cog):
         await ctx.send(embed = embed2)
 
 def setup(client):
-    client.add_cog(_corona(client)) 
+    client.add_cog(Corona(client)) 
 
