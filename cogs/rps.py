@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-import asyncio
+import random
 
 class Rps(commands.Cog):
 
@@ -11,16 +11,17 @@ class Rps(commands.Cog):
     @commands.command()
     async def rps(self, ctx, target : discord.Member = None):
 
+
         choices = [
             "rock",
             "paper",
             "scissors"
         ]        
-        
-        start = discord.Embed(
+
+        multiplayer = discord.Embed(
             color = 0x00FFEC,
-            title = f"{ctx.author.name} vs {target.name}",
-            description = f"Both of you check your dms to start playing!"
+            title = f"{ctx.author.name} vs Me...",
+            description = "Pick `rock`, `paper`, or `scissors`"
         )
 
         # <!-- Functions -->
@@ -78,13 +79,19 @@ class Rps(commands.Cog):
 
         if target:
 
+            start = discord.Embed(
+                color = 0x00FFEC,
+                title = f"{ctx.author.name} vs {target.name}",
+                description = f"Both of you check your dms to start playing!"
+            )
+
             #ask for confirmation
             await ctx.send(f'{target.name}! {ctx.author.name} has challenged you to an RPS duel! say `yes` to continue and anything else cancel')
 
             try:
                 confirm = await self.client.wait_for('message', check = confirmation, timeout = 60)
 
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 await ctx.send("He ran out of time :/")
 
             if confirm.content.lower() == 'yes':
@@ -106,6 +113,39 @@ class Rps(commands.Cog):
             picks = discord.Embed(
                 color = 0x00FFEC,
                 description = f'{target.mention} picked **{player1}** and **{player2}** was picked by {ctx.author.mention}'
+            )
+
+            winner = discord.Embed(
+                colour = 0x00FFEC,
+                description = win(player1, player2)
+            )
+
+            await ctx.send(embed = picks)
+            await ctx.send(embed = winner)
+
+        else:
+
+            # This line sets the "Target" to the bot so we can challenge him
+            target = self.client.user
+
+            await ctx.send(embed = multiplayer)
+
+            # Wait for message in channel
+            def wait_for_choice(message: discord.Message):
+                return message.author == ctx.author and message.guild.id == ctx.guild.id and message.channel.id == ctx.channel.id and message.content.lower() in choices
+
+            try:
+                choice = await self.client.wait_for('message', check = wait_for_choice)
+
+            except TimeoutError:
+                await ctx.send("You took too long :/")
+
+            player1 = random.choice(choices)
+            player2 = choice.content.lower() 
+
+            picks = discord.Embed(
+                color = 0x00FFEC,
+                description = f'I picked **{player1}** and you picked **{player2}**'
             )
 
             winner = discord.Embed(
