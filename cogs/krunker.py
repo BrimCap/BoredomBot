@@ -43,6 +43,8 @@ class Krunker(commands.Cog):
 
             res = requests.get("https://matchmaker.krunker.io/game-info?game=" + gamelink)
 
+            info = json.loads(res.text)
+
             if res.text == '{"error":"InvalidGameId"}':
                 
                 end_message = discord.Embed(
@@ -67,8 +69,6 @@ class Krunker(commands.Cog):
             await send.edit(embed = update)
 
             await asyncio.sleep(5)
-
-        await send.send(embed = end_message)
 
 def setup(client):
     client.add_cog(Krunker(client))
