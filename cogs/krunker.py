@@ -30,12 +30,11 @@ class Krunker(commands.Cog):
         game = discord.Embed(
             colour = 0xfad15f,
             title = 'Krunker Game Invite',
-            description = f'''{link}
-            
-            Map: {info[4]['i']}
-            Players: {info[2]} / {info[3]}
-            '''
+            description = link
         )
+
+        game.add_field(name = "Map", value = info[4]['1'])
+        game.add_field(name = "Players", value = f"{info[2]} / {info[3]}", inline = True)
 
         send = await ctx.send(embed = game)
 
@@ -59,12 +58,11 @@ class Krunker(commands.Cog):
             update = discord.Embed(
                colour = 0xfad15f,
                title = 'Krunker Game Invite',
-               description = f'''{link}
-
-               Map: {info[4]['i']}
-               Players: {info[2]} / {info[3]}
-               '''
+               description = link
             )
+
+            update.add_field(name = "Map", value = info[4]['1'])
+            update.add_field(name = "Players", value = f"{info[2]} / {info[3]}", inline = True)
 
             await send.edit(embed = update)
 
