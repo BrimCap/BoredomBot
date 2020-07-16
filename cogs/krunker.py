@@ -33,7 +33,7 @@ class Krunker(commands.Cog):
             description = link
         )
 
-        game.add_field(name = "Map", value = info[4]['1'])
+        game.add_field(name = "Map", value = info[4]['i'])
         game.add_field(name = "Players", value = f"{info[2]} / {info[3]}", inline = True)
 
         send = await ctx.send(embed = game)
@@ -61,7 +61,7 @@ class Krunker(commands.Cog):
                description = link
             )
 
-            update.add_field(name = "Map", value = info[4]['1'])
+            update.add_field(name = "Map", value = info[4]['i'])
             update.add_field(name = "Players", value = f"{info[2]} / {info[3]}", inline = True)
 
             await send.edit(embed = update)
