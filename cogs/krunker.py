@@ -16,7 +16,7 @@ class Krunker(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        if message.content.startswith('https://krunker.io/'):
+        if message.content.startswith('https://krunker.io/?game='):
 
             self.playing = True
 
