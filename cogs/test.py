@@ -7,31 +7,19 @@ class Test(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def test(self, ctx, member : discord.Member = None):
+    async def test_match(self, ctx, map):
 
-        member = ctx.author if not member else member
-        
-        embed = discord.Embed(
-            color = 0x0000FF,
-            description = ''' Ok notice how i dont have a title.
+        def remove_gamemode(full_map_name : str):
 
-            I just did ```py
-            embed_name = discord.Embed(
-                color = 0x0000FF,
-                description = this.
-            )
-            ```
+            underscore_split = full_map_name.split('_')
 
-            And what we will be making today is the thing in the top.
-            Look it says the name of the person i pinged but in a cool way.
+            game_mode_length = len(underscore_split[0])
 
-            We will be making that today. (It's really easy btw)
-            '''
-        )
+            removal = game_mode_length + 1
 
-        embed.set_author(name = member.name, icon_url = member.avatar_url)
+            return full_map_name[removal:]
 
-        await ctx.send(embed = embed)
+        await ctx.send(remove_gamemode(map))
 
 def setup(client):
     client.add_cog(Test(client))
