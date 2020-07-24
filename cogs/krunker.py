@@ -33,6 +33,8 @@ class Krunker(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
+        game_channel = discord.utils.get(message.guild.channels, name = "🎮-game-links")
+
         def remove_gamemode(game):
 
             game_split = game.split('_')
@@ -75,7 +77,7 @@ class Krunker(commands.Cog):
                 game.set_image(url = 'https://user-assets.krunker.io/m' + str(info[4]['m']) + '/thumb.png?v=5')
             
 
-            send = await message.channel.send(embed = game)
+            send = await game_channel.send(embed = game)
 
             while self.playing:
 
@@ -111,12 +113,7 @@ class Krunker(commands.Cog):
 
                 await asyncio.sleep(20)
 
-            end_message = discord.Embed(
-                colour = 0xfad15f,
-                description = 'The game end or was closed. Sad'
-            )
-
-            await send.edit(embed = end_message)
+            await send.delete()
 
     @commands.command(aliases = ['stop'])
     async def close(self, ctx):

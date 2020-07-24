@@ -50,7 +50,7 @@ async def on_message(message):
         "I am bored",
         "i am bored",
         "I'm bored",
-        "i'm bored",
+        "i'm bored"
     ]
 
     if message.author.id == client.user.id:
