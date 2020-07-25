@@ -118,10 +118,12 @@ class Krunker(commands.Cog):
     @commands.command(aliases = ['stop'])
     async def close(self, ctx):
         if not self.playing:
-            await ctx.send('No active game found')
+            await ctx.message.delete()
+            await ctx.send('No active game found', delete_after = 5.00)
             return
 
         else:
+            await ctx.message.delete()
             self.playing = False
 
 def setup(client):
