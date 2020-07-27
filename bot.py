@@ -4,21 +4,16 @@ from discord.ext import commands
 import os
 import tokener
 
-from colored import fg, bg, attr
-
 TOKEN = tokener.get_token()
 
 client = commands.Bot(command_prefix = '!b ')
-
-green = fg('green')
-reset = attr('reset')
 
 @client.event
 async def on_ready():
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    print(reset + "")
+    print("")
     print("==========----------------✶----------------==========")
     print("")
     print("The bot is logged in!")
@@ -71,7 +66,7 @@ async def on_message(message):
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
-        print(green + f'{filename[:-3].upper()}: Online')
+        print(f'{filename[:-3].upper()}: Online')
         
 client.run(TOKEN)
 # :)
