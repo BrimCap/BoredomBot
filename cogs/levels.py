@@ -35,7 +35,7 @@ class Levels(commands.Cog):
         await self.add_money(users, message.author, 1)
 
         with open("users.json", "w") as f:
-            json.dump(users, f, indent = 2)
+            json.dump(users, f, indent = 4)
 
     @commands.command(aliases = ['rank', 'level', 'cash'])
     async def money(self, ctx, member : discord.Member = None):
