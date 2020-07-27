@@ -11,7 +11,7 @@ client = commands.Bot(command_prefix = '!b ')
 @client.event
 async def on_ready():
 
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     print("")
     print("==========----------------✶----------------==========")
