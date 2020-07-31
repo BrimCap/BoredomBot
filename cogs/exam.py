@@ -58,7 +58,7 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
             elif date == 'day after tomorrow':
                 two_days = datetime.timedelta(days = 2)
@@ -68,7 +68,7 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
             elif date in ['next week', 'one week']:
                 one_week = datetime.timedelta(days = 7)
@@ -78,7 +78,7 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
             else:
                 await ctx.send('I can only go upto one week. Not too smart I know, maybe you spelled something wrong?')
@@ -154,7 +154,7 @@ class Exams(commands.Cog):
 
             if datetime.date.today() == test_date - one_day:
                 sent = True
-                await channel.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
+                await ctx.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
 
         if not sent:
             await ctx.send('Looks like there are no tests tomorrow! yay!')
