@@ -142,6 +142,8 @@ class Exams(commands.Cog):
     @commands.command(aliases = ['tommorow', 'tomorrow'])
     async def check(self, ctx):
 
+        sent = False
+
         with open("tests.json", "r") as f:
             tests = json.load(f)
 
@@ -151,7 +153,11 @@ class Exams(commands.Cog):
             one_day = datetime.timedelta(days = 1)
 
             if datetime.date.today() == test_date - one_day:
+                sent = True
                 await channel.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
+
+        if not sent:
+            await ctx.send('Looks like there are no tests tomorrow! yay!')
 
 
 def setup(client):
