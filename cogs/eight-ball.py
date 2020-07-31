@@ -4,7 +4,7 @@ from discord.ext import commands
 
 class EightBall(commands.Cog):
 
-    responses = [
+    RESPONSES = [
             "As I see it, yes.",
             "Ask again later.",
             "Better not tell you now.",
@@ -34,7 +34,7 @@ class EightBall(commands.Cog):
     async def _8ball(self, ctx, *, question):
         answer = discord.Embed(
             colour = 0x290fd1,
-            description = random.choice(self.responses)
+            description = random.choice(self.RESPONSES)
         )
 
         await ctx.send(embed = answer)
