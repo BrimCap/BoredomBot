@@ -5,42 +5,112 @@ import datetime
 
 import json
 
+import traceback
+
 class Exams(commands.Cog):
 
     def __init__(self, client):
         self.client = client
+        self.test_check.start()
 
-    @commands.command()
-    async def add_test(self, ctx, subject, lesson : int, date):
-        
-        nice_date = f"{date[0:2]}-{date[2:4]}-{date[4:]}"
-        
+    @tasks.loop(hours = 24)
+    async def test_check(self):
+
+        await self.client.wait_until_ready()
+
         with open("tests.json", "r") as f:
             tests = json.load(f)
+
+        servers = discord.utils.get(self.client.guilds, name = 'SILENCED ROBO')
+        channel = discord.utils.get(servers.channels, name = '📚-school')
+
+        for test in tests:
+
+            test_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
+            one_day = datetime.timedelta(days = 1)
+
+            if datetime.date.today() == test_date - one_day:
+                await channel.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
+
+    @commands.command(aliases = ['add'])
+    async def add_test(self, ctx, subject, lesson : int, *, date):
+
+        with open("tests.json", "r") as f:
+            tests = json.load(f)
+        
+        chech_hyphen = date.find('-')
+
+        if chech_hyphen in [1, 2]:
+
+            split = date.split('-')
+
+            dates = [split[0], split[1], split[2]]
+            
+            await ctx.send(f"Added **{subject}**: **{lesson}** on **{date}** 👌")
+
+        else:
+            if date in ['tomorrow', 'tommorrow', 'tommorow']:
+
+                one_day = datetime.timedelta(days = 1)
+                date = datetime.date.today() + one_day
+
+                dates = [date.day, date.month, date.year]
+
+                understandable_date = f"{date.day}-{date.month}-{date.year}"
+
+                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+
+            elif date == 'day after tomorrow':
+                two_days = datetime.timedelta(days = 2)
+                date = datetime.date.today() + two_days
+
+                dates = [date.day, date.month, date.year]
+
+                understandable_date = f"{date.day}-{date.month}-{date.year}"
+
+                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+
+            elif date in ['next week', 'one week']:
+                one_week = datetime.timedelta(days = 7)
+                date = datetime.date.today() + one_week
+
+                dates = [date.day, date.month, date.year]
+
+                understandable_date = f"{date.day}-{date.month}-{date.year}"
+
+                await ctx.send(f'Added **{subject}**: {lesson} on {understandable_date}')
+
+            else:
+                await ctx.send('I can only go upto one week. Not too smart I know, maybe you spelled something wrong?')
 
         tests.append({
             "subject": subject,
             "lesson": lesson,
             "date": {
-                "day": int(date[0:2]),
-                "month": int(date[2:4]),
-                "year": int(date[4:])
+                "day": int(dates[0]),
+                "month": int(dates[1]),
+                "year": int(dates[2])
             }
         })
+                
 
         with open("tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
 
-        await ctx.send(f"Added **{subject}**: **{lesson}** on **{nice_date}** 👌")
 
-    @commands.command(aliases = ['delete_test'])
+    @commands.command(aliases = ['delete_test', 'delete', 'remove'])
     async def remove_test(self, ctx, index : int):
 
         with open("tests.json", "r") as f:
             tests = json.load(f)
 
-        await ctx.send(f"Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
-        del tests[index]
+        if index - 1 > len(tests):
+            await ctx.send("Coudn't find that test :(\nTry Checking `!b tests` again")
+            return
+        
+        else:
+            await ctx.send(f"Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
+            del tests[index]
 
         with open("tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
@@ -68,6 +138,21 @@ class Exams(commands.Cog):
             that_test.add_field(name = "Due Date", value = datetime_date)
 
             await ctx.send(embed = that_test)
+
+    @commands.command(aliases = ['tommorow', 'tomorrow'])
+    async def check(self, ctx):
+
+        with open("tests.json", "r") as f:
+            tests = json.load(f)
+
+        for test in tests:
+
+            test_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
+            one_day = datetime.timedelta(days = 1)
+
+            if datetime.date.today() == test_date - one_day:
+                await channel.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
+
 
 def setup(client):
     client.add_cog(Exams(client))
