@@ -6,7 +6,7 @@ import tokener
 
 TOKEN = tokener.get_token()
 
-client = commands.Bot(command_prefix = '!b ')
+client = commands.Bot(command_prefix = ['!b ', '!B '])
 
 @client.event
 async def on_ready():
