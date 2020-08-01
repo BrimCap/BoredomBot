@@ -128,6 +128,19 @@ class Exams(commands.Cog):
         for test_number, test in enumerate(tests):
 
             datetime_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
+            days_apart = datetime_date - datetime.date.today()
+
+            if days_apart == datetime.timedelta(days = 1):
+                show_date = 'Tomorrow'
+
+            elif days_apart == datetime.timedelta(days = 2):
+                show_date = 'Day After Tomorrow'
+
+            elif days_apart == datetime.timedelta(days = 7):
+                show_date = 'Next Week'
+
+            else:
+                show_date = f'In {days_apart.days} days'
 
             that_test = discord.Embed(
                 color = 0x21eded,
@@ -135,7 +148,7 @@ class Exams(commands.Cog):
             )
 
             that_test.add_field(name = "ID", value = test_number)
-            that_test.add_field(name = "Due Date", value = datetime_date)
+            that_test.add_field(name = "Due Date", value = show_date)
 
             await ctx.send(embed = that_test)
 
