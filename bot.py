@@ -69,4 +69,4 @@ for filename in os.listdir('./cogs'):
         print(f'{filename[:-3].upper()}: Online')
         
 client.run(TOKEN)
-# :)
+# :))
