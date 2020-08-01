@@ -47,19 +47,18 @@ async def unload(ctx, extenstion):
 async def on_message(message):
 
     boredom_messages = [
-        "Im bored",
         "im bored",
-        "I am bored",
+        "i'm bored",
         "i am bored",
-        "I'm bored",
-        "i'm bored"
+        "im so bored"
     ]
 
     if message.author.id == client.user.id:
         return
     
-    if message.content in boredom_messages:
-        await message.channel.send("Same")
+    for bored_message in boredom_messages:
+        if message.content.find(bored_message) != -1:
+            await message.channel.send("Same")
 
     await client.process_commands(message)
 
