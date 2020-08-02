@@ -53,12 +53,8 @@ async def on_message(message):
         "im so bored"
     ]
 
-    if message.author.id == client.user.id:
-        return
-    
-    for bored_message in boredom_messages:
-        if message.content.find(bored_message) != -1:
-            await message.channel.send("Same")
+    if message.content.lower() in boredom_messages:
+        await ctx.send("Same")
 
     await client.process_commands(message)
 
