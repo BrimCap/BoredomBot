@@ -29,8 +29,12 @@ class Exams(commands.Cog):
             test_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
             one_day = datetime.timedelta(days = 1)
 
-            if datetime.date.today() == test_date - one_day:
+            if datetime.date.today() == test_date - one_day and not test['reminded']:
                 await channel.send(f"Hey @everyone! Tommorow you have **{test['subject']}**: **{test['lesson']}**! Just a reminder!")
+                test['reminded'] = True
+
+        with open("tests.json", "w") as f:
+            json.dumb(tests, f)
 
     @commands.command(aliases = ['add'])
     async def add_test(self, ctx, subject, lesson : int, *, date):
@@ -91,6 +95,7 @@ class Exams(commands.Cog):
                 "month": int(dates[1]),
                 "year": int(dates[2])
             }
+            "reminded": False
         })
                 
 
