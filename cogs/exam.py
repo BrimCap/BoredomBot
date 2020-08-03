@@ -34,7 +34,7 @@ class Exams(commands.Cog):
                 test['reminded'] = True
 
         with open("tests.json", "w") as f:
-            json.dumb(tests, f)
+            json.dump(tests, f, indent = 4)
 
     @commands.command(aliases = ['add'])
     async def add_test(self, ctx, subject, lesson : int, *, date):
@@ -94,7 +94,7 @@ class Exams(commands.Cog):
                 "day": int(dates[0]),
                 "month": int(dates[1]),
                 "year": int(dates[2])
-            }
+            },
             "reminded": False
         })
                 
