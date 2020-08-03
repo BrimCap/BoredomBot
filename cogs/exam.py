@@ -30,7 +30,7 @@ class Exams(commands.Cog):
             one_day = datetime.timedelta(days = 1)
 
             if datetime.date.today() == test_date - one_day:
-                await channel.send(f"Hey @everyone! Tommorow you have {test['subject']}: {test['lesson']}! Just a reminder!")
+                await channel.send(f"Hey @everyone! Tommorow you have **{test['subject']}**: **{test['lesson']}**! Just a reminder!")
 
     @commands.command(aliases = ['add'])
     async def add_test(self, ctx, subject, lesson : int, *, date):
@@ -49,7 +49,7 @@ class Exams(commands.Cog):
             await ctx.send(f"Added **{subject}**: **{lesson}** on **{date}** 👌")
 
         else:
-            if date in ['tomorrow', 'tommorrow', 'tommorow']:
+            if date.lower() in ['tomorrow', 'tommorrow', 'tommorow']:
 
                 one_day = datetime.timedelta(days = 1)
                 date = datetime.date.today() + one_day
@@ -60,7 +60,7 @@ class Exams(commands.Cog):
 
                 await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
-            elif date == 'day after tomorrow':
+            elif date.lower() == 'day after tomorrow':
                 two_days = datetime.timedelta(days = 2)
                 date = datetime.date.today() + two_days
 
@@ -70,7 +70,7 @@ class Exams(commands.Cog):
 
                 await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
-            elif date in ['next week', 'one week']:
+            elif date.lower() in ['next week', 'one week']:
                 one_week = datetime.timedelta(days = 7)
                 date = datetime.date.today() + one_week
 
@@ -110,7 +110,7 @@ class Exams(commands.Cog):
         
         else:
             await ctx.send(f"Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
-            del tests[index]
+            del tests[index]  
 
         with open("tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
@@ -130,7 +130,10 @@ class Exams(commands.Cog):
             datetime_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
             days_apart = datetime_date - datetime.date.today()
 
-            if days_apart == datetime.timedelta(days = 1):
+            if days_apart == datetime.timedelta(days = 0):
+                show_date = 'Today'
+            
+            elif days_apart == datetime.timedelta(days = 1):
                 show_date = 'Tomorrow'
 
             elif days_apart == datetime.timedelta(days = 2):

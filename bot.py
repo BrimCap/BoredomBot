@@ -54,7 +54,7 @@ async def on_message(message):
     ]
 
     if message.content.lower() in boredom_messages:
-        await ctx.send("Same")
+        await message.channel.send("Same")
 
     await client.process_commands(message)
 
