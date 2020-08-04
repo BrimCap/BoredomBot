@@ -152,7 +152,7 @@ class Exams(commands.Cog):
             datetime_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
             days_apart = datetime_date - datetime.date.today()
 
-            show_date = calc_date(days_apart)
+            show_date = self.calc_date(days_apart)
 
             that_test = discord.Embed(
                 color = 0x21eded,
