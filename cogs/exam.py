@@ -13,6 +13,23 @@ class Exams(commands.Cog):
         self.client = client
         self.test_check.start()
 
+    def calc_date(self, days_apart : datetime.timedelta):
+
+        if days_apart == datetime.timedelta(days = 0):
+            return 'Today'
+
+        elif days_apart == datetime.timedelta(days = 1):
+            return 'Tomorrow'
+
+        elif days_apart == datetime.timedelta(days = 2):
+            return 'Day after tomorrow'
+
+        elif days_apart == datetime.timedelta(days = 7):
+            return 'Next Week'
+
+        else:
+            return f"In {days_apart.days} days."
+
     @tasks.loop(hours = 24)
     async def test_check(self):
 
@@ -135,20 +152,7 @@ class Exams(commands.Cog):
             datetime_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
             days_apart = datetime_date - datetime.date.today()
 
-            if days_apart == datetime.timedelta(days = 0):
-                show_date = 'Today'
-            
-            elif days_apart == datetime.timedelta(days = 1):
-                show_date = 'Tomorrow'
-
-            elif days_apart == datetime.timedelta(days = 2):
-                show_date = 'Day After Tomorrow'
-
-            elif days_apart == datetime.timedelta(days = 7):
-                show_date = 'Next Week'
-
-            else:
-                show_date = f'In {days_apart.days} days'
+            show_date = calc_date(days_apart)
 
             that_test = discord.Embed(
                 color = 0x21eded,
