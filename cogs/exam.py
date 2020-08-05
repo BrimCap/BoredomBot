@@ -35,7 +35,7 @@ class Exams(commands.Cog):
 
         await self.client.wait_until_ready()
 
-        with open("tests.json", "r") as f:
+        with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
         servers = discord.utils.get(self.client.guilds, name = 'SILENCED ROBO')
@@ -50,13 +50,13 @@ class Exams(commands.Cog):
                 await channel.send(f"Hey @everyone! Tommorow you have **{test['subject']}**: **{test['lesson']}**! Just a reminder!")
                 test['reminded'] = True
 
-        with open("tests.json", "w") as f:
+        with open("DB/tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
 
     @commands.command(aliases = ['add'])
     async def add_test(self, ctx, subject, lesson : int, *, date):
 
-        with open("tests.json", "r") as f:
+        with open("DB/tests.json", "r") as f:
             tests = json.load(f)
         
         chech_hyphen = date.find('-')
@@ -116,14 +116,14 @@ class Exams(commands.Cog):
         })
                 
 
-        with open("tests.json", "w") as f:
+        with open("DB/tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
 
 
     @commands.command(aliases = ['delete_test', 'delete', 'remove'])
     async def remove_test(self, ctx, index : int):
 
-        with open("tests.json", "r") as f:
+        with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
         if index - 1 > len(tests):
@@ -134,13 +134,13 @@ class Exams(commands.Cog):
             await ctx.send(f"Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
             del tests[index]  
 
-        with open("tests.json", "w") as f:
+        with open("DB/tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
 
     @commands.command(aliases = ['test'])
     async def tests(self, ctx):
 
-        with open("tests.json", "r") as f:
+        with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
         if len(tests) == 0:
@@ -169,7 +169,7 @@ class Exams(commands.Cog):
 
         sent = False
 
-        with open("tests.json", "r") as f:
+        with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
         for test in tests:

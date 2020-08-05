@@ -3,7 +3,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.json
 
 # C extensions
 *.so
@@ -133,3 +132,6 @@ dmypy.json
 
 #token
 tokener.py
+
+# DBs
+DB/
