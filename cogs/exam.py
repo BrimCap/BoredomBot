@@ -28,7 +28,7 @@ class Exams(commands.Cog):
             return 'Next Week'
 
         else:
-            return f"In {days_apart.days} days."
+            return f"In {days_apart.days} days"
 
     @tasks.loop(hours = 24)
     async def test_check(self):

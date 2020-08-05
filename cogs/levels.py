@@ -28,19 +28,19 @@ class Levels(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        with open("user_levels.json", "r") as f:
+        with open("DB/user_levels.json", "r") as f:
             users = json.load(f)
 
         await self.update_users(users, message.author)
         await self.add_money(users, message.author, 1)
 
-        with open("user_levels.json", "w") as f:
+        with open("DB/user_levels.json", "w") as f:
             json.dump(users, f, indent = 4)
 
     @commands.command(aliases = ['rank', 'level', 'cash'])
     async def money(self, ctx, member : discord.Member = None):
 
-        with open("user_levels.json", "r") as f:
+        with open("DB/user_levels.json", "r") as f:
             users = json.load(f)
 
         member = ctx.author if not member else member
