@@ -33,7 +33,6 @@ class Krunker(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        game_channel = discord.utils.get(message.guild.channels, name = "🎮-game-links")
 
         def remove_gamemode(game):
 
@@ -43,7 +42,9 @@ class Krunker(commands.Cog):
 
             return game[gamemode:]
 
-        if message.content.startswith('https://krunker.io/?game='):
+        if message.content.startswith('https://krunker.io/?game=') and message.guild is not None:
+
+            game_channel = discord.utils.get(message.guild.channels, name = "🎮-game-links")
 
             self.playing = True
 
@@ -114,6 +115,7 @@ class Krunker(commands.Cog):
                 await asyncio.sleep(20)
 
             await send.delete()
+
 
     @commands.command(aliases = ['stop'])
     async def close(self, ctx):
