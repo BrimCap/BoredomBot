@@ -120,7 +120,7 @@ class Exams(commands.Cog):
             json.dump(tests, f, indent = 4)
 
 
-    @commands.command(aliases = ['delete_test', 'delete', 'remove'])
+    @commands.command(aliases = ['delete_test', 'delete', 'remove', 'del'])
     async def remove_test(self, ctx, index : int):
 
         with open("DB/tests.json", "r") as f:
