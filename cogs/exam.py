@@ -121,18 +121,29 @@ class Exams(commands.Cog):
 
 
     @commands.command(aliases = ['delete_test', 'delete', 'remove', 'del'])
-    async def remove_test(self, ctx, index : int):
+    async def remove_test(self, ctx, index : int = None):
 
         with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
-        if index - 1 > len(tests):
-            await ctx.send("Coudn't find that test :(\nTry Checking `!b tests` again")
-            return
-        
+        if index:
+
+            if index - 1 > len(tests):
+                await ctx.send("Coudn't find that test :(\nTry Checking `!b tests` again")
+                return
+
+            else:
+                await ctx.send(f"👌 Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
+                del tests[index]
+
         else:
-            await ctx.send(f"Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
-            del tests[index]  
+
+            for test in tests:
+                test_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
+
+                if test_date <= datetime.date.today():
+                    await ctx.send(f"👌 Removed **{test['subject']}**: **{test['lesson']}**")
+                    del test
 
         with open("DB/tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
