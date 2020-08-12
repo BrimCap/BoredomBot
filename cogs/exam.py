@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands, tasks
 
 import datetime
+from day import calc_day
 
 import json
 
@@ -56,6 +57,16 @@ class Exams(commands.Cog):
     @commands.command(aliases = ['add'])
     async def add_test(self, ctx, subject, lesson : int, *, date):
 
+        days = (
+            'monday',
+            'tuesday', 
+            'wednesday', 
+            'thursday', 
+            'friday', 
+            'saturday', 
+            'sunday'
+        )
+
         with open("DB/tests.json", "r") as f:
             tests = json.load(f)
         
@@ -67,7 +78,7 @@ class Exams(commands.Cog):
 
             dates = [split[0], split[1], split[2]]
             
-            await ctx.send(f"Added **{subject}**: **{lesson}** on **{date}** 👌")
+            await ctx.send(f"👌 Added **{subject}**: **{lesson}** on **{date}** 👌")
 
         else:
             if date.lower() in ['tomorrow', 'tommorrow', 'tommorow']:
@@ -79,7 +90,7 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
+                await ctx.send(f'👌 Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
             elif date.lower() == 'day after tomorrow':
                 two_days = datetime.timedelta(days = 2)
@@ -89,7 +100,7 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
+                await ctx.send(f'👌 Added **{subject}**: **{lesson}** on **{understandable_date}**')
 
             elif date.lower() in ['next week', 'one week']:
                 one_week = datetime.timedelta(days = 7)
@@ -99,10 +110,29 @@ class Exams(commands.Cog):
 
                 understandable_date = f"{date.day}-{date.month}-{date.year}"
 
-                await ctx.send(f'Added **{subject}**: **{lesson}** on **{understandable_date}**')
+                await ctx.send(f'👌 Added **{subject}**: **{lesson}** on **{understandable_date}**')
+
+            elif date.lower() in days:
+                date = calc_day(date.lower())
+
+                dates = [date.day, date.month, date.year]
+
+                understandable_date = f"{date.day}-{date.month}-{date.year}"
+
+                await ctx.send(f"👌 Added **{subject}**: **{lesson}** on **{understandable_date}**")
+
+            elif date.lower().startswith('next') and date.lower().endswith(days):
+                date = calc_day(date.lower()[5:], True)
+
+                dates = [date.day, date.month, date.year]
+
+                understandable_date = f"{date.day}-{date.month}-{date.year}"
+
+                await ctx.send(f"👌 Added **{subject}**: **{lesson}** on **{understandable_date}**")
 
             else:
-                await ctx.send('I can only go upto one week. Not too smart I know, maybe you spelled something wrong?')
+                await ctx.send('I dont quite know what you said there.. Did you spell something wrong...?')
+                return
 
         tests.append({
             "subject": subject,
@@ -138,12 +168,12 @@ class Exams(commands.Cog):
 
         else:
 
-            for test in tests:
+            for i, test in enumerate(tests):
                 test_date = datetime.date(test['date']['year'], test['date']['month'], test['date']['day'])
 
                 if test_date <= datetime.date.today():
                     await ctx.send(f"👌 Removed **{test['subject']}**: **{test['lesson']}**")
-                    del test
+                    del tests[i]
 
         with open("DB/tests.json", "w") as f:
             json.dump(tests, f, indent = 4)
