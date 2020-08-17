@@ -156,14 +156,15 @@ class Exams(commands.Cog):
         with open("DB/tests.json", "r") as f:
             tests = json.load(f)
 
-        if index:
+        if index is not None:
 
-            if index - 1 > len(tests):
-                await ctx.send("Coudn't find that test :(\nTry Checking `!b tests` again")
-                return
+            try:
+                await ctx.send(f"👌 Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
+
+            except IndexError:
+                await ctx.send(f"Couldn't find the id of **{index}**")
 
             else:
-                await ctx.send(f"👌 Removed **{tests[index]['subject']}**: **{tests[index]['lesson']}**")
                 del tests[index]
 
         else:
