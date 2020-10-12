@@ -4,7 +4,7 @@ from discord.ext import commands
 import os
 import json
 
-os.chdir(r'C:\Users\hp\Desktop\Stuff\My Stuff\Coding\Discord\Discord Bots\BoredomBot\cogs')
+os.chdir(r'C:\Users\hp\Desktop\Stuff\MyStuff\Coding\Discord\Discord Bots\BoredomBot\cogs')
 
 class Levels(commands.Cog):
 
