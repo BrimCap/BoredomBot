@@ -1,1 +1,1 @@
-This file is no longer maintained. Sad
+This file is no longer maintained.
