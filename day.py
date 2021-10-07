@@ -21,7 +21,7 @@ def calc_day(day : str, next = False):
             ]
 
         next : bool
-            If true, returns the next wednesday (skips the first one)
+            If true, returns the next day (skips the first one)
             Defaults to False if not passed in
 
     Returns:
